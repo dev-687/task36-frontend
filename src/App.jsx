@@ -1,17 +1,36 @@
 
+import { useEffect, useState } from 'react';
 import './App.css'
 import FileUpload from './components/FileUpload'
 import UploadedImages from './components/UploadedImages'
+import axios from 'axios';
 
 function App() {
- 
+  const baseUrl = "http://localhost:5000";
+  // const baseUrl = "https://task35-backend.vercel.app";
+  const api_version = "api/v1";
+ const [images, setImages] = useState([]);
+  const handleAddImage=(newImage)=>{
+    setImages((prev ) => [...prev , newImage]);
+  }
+  
+  useEffect(() => {
+      axios.get(`${baseUrl}/${api_version}/uploads`)
+      .then((images) => {
+          setImages(images.data);
+      })
+     
+      
+  },[])
+
+
   return (
     <div className='mt-10' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
       <div style={{ width: '50%' }}>
-        <FileUpload />
+        <FileUpload onAddImage={handleAddImage} />
       </div>
       <div style={{ width: '80%' }}>
-        <UploadedImages />
+        <UploadedImages images={images} />
       </div>
     </div>
   )

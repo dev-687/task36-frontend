@@ -1,19 +1,26 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-function UploadedImages() {
-    const [images, setImages] = useState([]);
+function UploadedImages({ images }) {
     const baseUrl = "http://localhost:5000";
-    // const baseUrl = "https://task35-backend.vercel.app";
     const api_version = "api/v1";
-    useEffect(() => {
-        axios.get(`${baseUrl}/${api_version}/uploads`)
-        .then((images) => {
-            setImages(images.data);
-        })
-       
-        
-    },[])
+
+const handleDelete = async (id) => {
+    try {
+        const response = await fetch(`${baseUrl}/${api_version}/uploads/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            alert('Image deleted successfully');
+            window.location.reload(); // Reload the page to reflect changes
+        } else {
+            alert('Failed to delete the image');
+        }
+    } catch (error) {
+        console.error('Error deleting the image:', error);
+        alert('An error occurred while deleting the image');
+    }
+};
 
 return (
     <div>
@@ -33,6 +40,7 @@ return (
                         <h3 className="text-lg font-medium mb-2">{image.filename}</h3>
                         <button 
                             className="delete-button px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+                            onClick={() => handleDelete(image._id)}
                         >
                             Delete
                         </button>
@@ -41,7 +49,7 @@ return (
             ))}
         </div>  
     </div>
-)
+);
 }
 
 export default UploadedImages

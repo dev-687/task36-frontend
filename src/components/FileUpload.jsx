@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const FileUpload = () => {
+const FileUpload = ({ onAddImage }) => {
     const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -26,8 +26,10 @@ const FileUpload = () => {
             onUploadProgress: (event) => {
             const percentCompleted = Math.round((event.loaded * 100) / event.total);
             setProgress(percentCompleted);
+            
             },
         });
+        onAddImage(response.data.file); 
         console.log("File uploaded successfully:", response.data);
         } catch (error) {
         console.error("Error uploading file:", error);
