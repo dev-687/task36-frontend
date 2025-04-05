@@ -6,8 +6,8 @@ import UploadedImages from './components/UploadedImages'
 import axios from 'axios';
 
 function App() {
-  const baseUrl = "http://localhost:5000";
-  // const baseUrl = "https://task35-backend.vercel.app";
+  // const baseUrl = "http://localhost:5000";
+  const baseUrl = "https://task36-backend.vercel.app";
   const api_version = "api/v1";
  const [images, setImages] = useState([]);
   const handleAddImage=(newImage)=>{

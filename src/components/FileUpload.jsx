@@ -5,8 +5,8 @@ const FileUpload = ({ onAddImage }) => {
     const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [progress, setProgress] = useState(0);
-    const baseUrl = "http://localhost:5000";
-    // const baseUrl = "https://task35-backend.vercel.app";
+    // const baseUrl = "http://localhost:5000";
+    const baseUrl = "https://task36-backend.vercel.app";
     const api_version = "api/v1";
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -30,6 +30,7 @@ const FileUpload = ({ onAddImage }) => {
             },
         });
         onAddImage(response.data.file); 
+        setFile(null); // Clear the file input after upload
         console.log("File uploaded successfully:", response.data);
         } catch (error) {
         console.error("Error uploading file:", error);

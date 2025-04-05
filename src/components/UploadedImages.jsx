@@ -1,7 +1,8 @@
 import React from 'react'
 
 function UploadedImages({ images }) {
-    const baseUrl = "http://localhost:5000";
+    // const baseUrl = "http://localhost:5000";
+    const baseUrl = "https://task36-backend.vercel.app";
     const api_version = "api/v1";
 
 const handleDelete = async (id) => {
@@ -32,7 +33,7 @@ return (
                     className="image-card w-full border border-gray-300 rounded-lg shadow-md overflow-hidden text-center bg-white transform transition-transform duration-300 hover:scale-105 hover:-translate-y-2"
                 >
                     <img 
-                        src={`${baseUrl}/${image.filePath}`} 
+                        src={image.filePath} 
                         alt={image.filename} 
                         className="w-full h-52 object-contain transform transition-transform duration-300 hover:scale-110"
                     />
