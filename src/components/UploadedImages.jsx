@@ -8,6 +8,8 @@ function UploadedImages({ images }) {
 const handleDelete = async (id) => {
     try {
         const response = await fetch(`${baseUrl}/${api_version}/uploads/${id}`, {
+            headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: false,
             method: 'DELETE',
         });
 

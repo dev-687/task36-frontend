@@ -15,7 +15,10 @@ function App() {
   }
   
   useEffect(() => {
-      axios.get(`${baseUrl}/${api_version}/uploads`)
+      axios.get(`${baseUrl}/${api_version}/uploads`,{
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: false,
+      })
       .then((images) => {
           setImages(images.data);
       })

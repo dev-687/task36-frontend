@@ -20,9 +20,8 @@ const FileUpload = ({ onAddImage }) => {
     
         try {
         const response = await axios.post(`${baseUrl}/${api_version}/uploads`, formData, {
-            headers: {
-            "Content-Type": "multipart/form-data",
-            },
+            headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: false,
             onUploadProgress: (event) => {
             const percentCompleted = Math.round((event.loaded * 100) / event.total);
             setProgress(percentCompleted);
