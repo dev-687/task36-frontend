@@ -15,6 +15,10 @@ function App() {
   }
   
   useEffect(() => {
+    axios.get("https://task36-backend.vercel.app/cors-test")
+  .then(res => console.log(res.data))
+  .catch(err => console.error(err));
+
       axios.get(`${baseUrl}/${api_version}/uploads`,{
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: false,
