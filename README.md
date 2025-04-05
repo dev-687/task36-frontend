@@ -20,4 +20,6 @@
 
 ![Images Listing](image-5.png)
 
+![Deleting an Image](image-7.png)
+
 ![MongoDB Documents](image-6.png)
